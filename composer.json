@@ -1,5 +1,5 @@
 {
-    "name": "ravi/tokopedia-api-client-php",
+    "name": "ravimukti/tokopedia-api-client",
     "description": "Tokopedia API Client for PHP",
     "type": "library",
     "require-dev": {

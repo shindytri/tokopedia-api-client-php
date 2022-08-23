@@ -4,7 +4,7 @@ Composer library for Tokopedia Open API. Please found something related with the
 
 ## How to install
 
-`composer install ravi/tokopedia-api-client-php`
+`composer install ravimukti/tokopedia-api-client`
 
 ## How to use
 ```
