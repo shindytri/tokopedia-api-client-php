@@ -26,5 +26,7 @@
     "scripts": {
         "test" : "phpunit --testdox"
     },
-    "require": {}
+    "require": {
+        "guzzlehttp/guzzle": "7.0"
+    }
 }
