@@ -8,5 +8,26 @@ Composer library for Tokopedia Open API. Please found something related with the
 
 ## How to use
 ```
+$tokopediaAuthRequest = new AuthorizationRequest();
+$tokopediaConfig = new TokopediaConfigClient();
+$tokopediaConfig->setPartnerId($_ENV["TOKOPEDIA_PARTNER_ID"]);
+$tokopediaConfig->setPartnerKey($_ENV["TOKOPEDIA_PARTNER_KEY"]);
 
+$baseUrl = $_ENV["TOKOPEDIA_AUTH_HOST"];
+$apiPath = "/token";
+
+$body = [];
+
+$response = $tokopediaAuthRequest->httpPost($baseUrl, $apiPath, $body, $tokopediaConfig);
+
+
+$tokopediaGeneralRequest = new GeneralRequest();
+$tokopediaConfig = new TokopediaConfigClient();
+$tokopediaConfig->setPartnerId($_ENV["TOKOPEDIA_PARTNER_ID"]);
+$tokopediaConfig->setAccessToken($_ENV["TOKOPEDIA_ACCESS_TOKEN"]);
+
+$baseUrl = $_ENV["TOKOPEDIA_API_HOST"];
+$apiPath = "/inventory/v1/fs/".$tokopediaConfig->getPartnerId()."/product/info?product_id=15341594";
+
+$response = $tokopediaGeneralRequest->httpGet($baseUrl, $apiPath, $tokopediaConfig);
 ```
