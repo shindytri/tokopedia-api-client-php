@@ -26,7 +26,9 @@ class AuthorizationWithBodyRequest
 
         $requestUrl = $baseUrl.$apiPath;
 
-        $authToken = self::generateSignature($apiConfig->getPartnerId(), $apiConfig->getPartnerKey());
+        $rawString = $apiConfig->getPartnerId().":".$apiConfig->getPartnerKey();
+
+        $authToken = base64_encode($rawString);
 
         $guzzleClient = new Client([
             'base_uri' => $baseUrl,
@@ -49,14 +51,4 @@ class AuthorizationWithBodyRequest
         return $response;
     }
     
-    /**
-     * Encode Base64
-     * @param string $partnerId fs_id
-     * @param string $partnerKey client_secret
-     * @return string
-     */
-    protected function generateSignature($partnerId, $partnerKey)
-    {
-        return base64_encode($partnerId.":".$partnerKey);
-    }
 }
