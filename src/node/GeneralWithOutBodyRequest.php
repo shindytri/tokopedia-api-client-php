@@ -33,7 +33,10 @@ class GeneralWithOutBodyRequest
 
         try 
         {
-            $response = json_decode($guzzleClient->request($httpMethod, $requestUrl, ["headers" => ["Authorization" => "Bearer ".$apiConfig->getAccessToken()]])->getBody()->getContents());
+            $request = $guzzleClient->request($httpMethod, $requestUrl, ["headers" => ["Authorization" => "Bearer ".$apiConfig->getAccessToken()]]);
+            $response_body = $request->getBody()->getContents();
+            $response_header = $request->getHeaders();
+            isset($response_header['Content-Type'][0]) && $response_header['Content-Type'][0] == 'application/json' ? $response = json_decode($response_body) : $response = $response_body;
         } catch (ClientException $e) 
         {
             $response = json_decode($e->getResponse()->getBody()->getContents());
